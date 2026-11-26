@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS KEYGEN // Генератор кодов доступа</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        cyber: {
+                            bg: '#080510',
+                            card: '#110b22',
+                            input: '#181030',
+                            border: '#2d1b54',
+                            neon: '#a855f7',
+                            glow: '#d946ef',
+                            accent: '#38bdf8'
+                        }
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(168, 85, 247, 0.35), inset 0 0 12px rgba(168, 85, 247, 0.15)',
+                        'neon-strong': '0 0 30px rgba(217, 70, 239, 0.55), 0 0 10px rgba(168, 85, 247, 0.4)',
+                        'card': '0 10px 40px -10px rgba(0, 0, 0, 0.8)'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #080510;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(217, 70, 239, 0.12) 0%, transparent 45%),
+                linear-gradient(to bottom, rgba(17, 11, 34, 0.6), rgba(8, 5, 16, 0.95));
+            min-height: 100vh;
+            color: #f3e8ff;
+        }
+
+        /* Неоновая сетка на фоне */
+        .cyber-grid {
+            background-size: 36px 36px;
+            background-image: 
+                linear-gradient(to right, rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+        }
+
+        /* Кастомный ползунок */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+        input[type="range"]::-webkit-slider-runnable-track {
+            background: #221642;
+            height: 0.45rem;
+            border-radius: 999px;
+            border: 1px solid #3b2370;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            margin-top: -5px;
+            background: linear-gradient(135deg, #c084fc, #e879f9);
+            height: 1.15rem;
+            width: 1.15rem;
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(217, 70, 239, 0.8);
+            transition: transform 0.15s ease;
+        }
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.15);
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0d081a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3b2370;
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b3fa0;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.85; }
+            50% { opacity: 1; }
+        }
+        .animate-glow {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="cyber-grid antialiased selection:bg-fuchsia-500/30 selection:text-fuchsia-200">
+
+    <!-- Всплывающее уведомление (Toast) -->
+    <div id="toast" class="fixed top-5 right-5 z-50 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-[#190f33]/95 border border-fuchsia-500/60 text-fuchsia-100 shadow-neon-strong backdrop-blur-md transform translate-x-10 opacity-0 pointer-events-none transition-all duration-300">
+        <span class="flex items-center justify-center w-6 h-6 rounded-full bg-fuchsia-500/20 text-fuchsia-400">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+            </svg>
+        </span>
+        <span id="toast-text" class="text-sm font-medium tracking-wide">Скопировано!</span>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+        <!-- Шапка -->
+        <header class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-purple-900/50">
+            <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-600 to-fuchsia-600 flex items-center justify-center shadow-neon shrink-0">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-2xl sm:text-3xl font-bold tracking-tight bg-gradient-to-r from-white via-purple-200 to-fuchsia-300 bg-clip-text text-transparent">
+                            NEXUS KEYGEN
+                        </h1>
+                        <span class="px-2 py-0.5 text-[11px] font-mono font-semibold uppercase tracking-wider rounded-md bg-fuchsia-500/15 text-fuchsia-300 border border-fuchsia-500/30">
+                            v2.4
+                        </span>
+                    </div>
+                    <p class="text-sm text-purple-300/70 mt-0.5">Генератор крипто-ключей и кодов доступа на базе пользовательского алфавита</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-2 self-start sm:self-center">
+                <button id="reset-defaults-btn" type="button" class="px-3.5 py-2 text-xs font-medium text-purple-300 hover:text-white bg-purple-950/60 hover:bg-purple-900/60 border border-purple-800/60 rounded-xl transition-colors flex items-center gap-1.5">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                    </svg>
+                    Сброс настроек
+                </button>
+            </div>
+        </header>
+
+        <!-- Основная сетка -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Левая колонка: Настройки -->
+            <aside class="lg:col-span-5 space-y-5">
+                <div class="bg-cyber-card/90 backdrop-blur-xl border border-cyber-border rounded-2xl p-5 sm:p-6 shadow-card">
+                    <h2 class="text-base font-semibold text-purple-100 flex items-center gap-2 mb-5">
+                        <span class="w-2 h-2 rounded-full bg-fuchsia-500 shadow-[0_0_8px_#d946ef]"></span>
+                        Параметры генерации
+                    </h2>
+
+                    <div class="space-y-5">
+                        <!-- Количество блоков -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label for="blocks-count" class="text-sm font-medium text-purple-200">Количество блоков</label>
+                                <span id="blocks-count-val" class="px-2.5 py-0.5 rounded-lg bg-purple-950 border border-purple-700/60 font-mono text-sm font-bold text-fuchsia-300">10</span>
+                            </div>
+                            <input id="blocks-count" type="range" min="1" max="24" value="10" class="w-full">
+                            <div class="flex justify-between text-[11px] text-purple-400/60 font-mono mt-1">
+                                <span>1</span>
+                                <span>10 (стандарт)</span>
+                                <span>24</span>
+                            </div>
+                        </div>
+
+                        <!-- Длина блока -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label for="block-length" class="text-sm font-medium text-purple-200">Длина блока (символов)</label>
+                                <span id="block-length-val" class="px-2.5 py-0.5 rounded-lg bg-purple-950 border border-purple-700/60 font-mono text-sm font-bold text-fuchsia-300">4</span>
+                            </div>
+                            <input id="block-length" type="range" min="2" max="10" value="4" class="w-full">
+                            <div class="flex justify-between text-[11px] text-purple-400/60 font-mono mt-1">
+                                <span>2</span>
+                                <span>4 (стандарт)</span>
+                                <span>10</span>
+                            </div>
+                        </div>
+
+                        <!-- Чекбокс: Короткий первый блок (как K7M-HGTP-...) -->
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-cyber-input/80 border border-purple-900/60 hover:border-purple-700/70 cursor-pointer transition-colors">
+                            <div>
+                                <span class="text-sm font-medium text-purple-100 block">Первый блок на 1 символ короче</span>
+                                <span class="text-xs text-purple-400/80">Формат префикса (например, K7M-HGTP)</span>
+                            </div>
+                            <input id="short-first-block" type="checkbox" checked class="w-5 h-5 rounded accent-fuchsia-500 cursor-pointer">
+                        </label>
+
+                        <!-- Выбор разделителя -->
+                        <div>
+                            <span class="text-sm font-medium text-purple-200 block mb-2">Разделитель блоков</span>
+                            <div class="grid grid-cols-3 gap-2" id="separator-group">
+                                <button type="button" data-sep="-" class="sep-btn active py-2.5 px-3 rounded-xl font-mono text-sm font-semibold border transition-all bg-fuchsia-600/25 border-fuchsia-500 text-white shadow-neon">
+                                    Дефис ( - )
+                                </button>
+                                <button type="button" data-sep="_" class="sep-btn py-2.5 px-3 rounded-xl font-mono text-sm font-semibold border transition-all bg-cyber-input border-purple-900/70 text-purple-300 hover:border-purple-700">
+                                    Нижнее ( _ )
+                                </button>
+                                <button type="button" data-sep="" class="sep-btn py-2.5 px-3 rounded-xl font-mono text-sm font-semibold border transition-all bg-cyber-input border-purple-900/70 text-purple-300 hover:border-purple-700">
+                                    Слитно
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Чекбокс: Включить цифры -->
+                        <label class="flex items-center justify-between p-3 rounded-xl bg-cyber-input/80 border border-purple-900/60 hover:border-purple-700/70 cursor-pointer transition-colors">
+                            <div>
+                                <span class="text-sm font-medium text-purple-100 block">Использовать цифры (0–9)</span>
+                                <span class="text-xs text-purple-400/80">Добавляет цифры в каждый блок ключа</span>
+                            </div>
+                            <input id="include-digits" type="checkbox" checked class="w-5 h-5 rounded accent-fuchsia-500 cursor-pointer">
+                        </label>
+
+                        <!-- Редактирование алфавита -->
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label for="alphabet-input" class="text-sm font-medium text-purple-200">Алфавит символов</label>
+                                <span id="alphabet-count" class="text-xs font-mono text-purple-400">20 уникальных</span>
+                            </div>
+                            <textarea id="alphabet-input" rows="2" class="w-full px-3.5 py-2.5 rounded-xl bg-cyber-input border border-purple-800/80 focus:border-fuchsia-500 focus:ring-2 focus:ring-fuchsia-500/20 outline-none font-mono text-sm text-purple-100 tracking-wider uppercase transition-all resize-none" placeholder="Введите буквы...">H, G, T, P, S, V, N, M, B, Z, X, D, K, L, J, Q, W, R, F, C</textarea>
+                            <p class="text-[11px] text-purple-400/75 mt-1.5">Разделители и пробелы игнорируются автоматически. Дубликаты удаляются.</p>
+                        </div>
+
+                        <!-- Количество генерируемых кодов за раз -->
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <label for="batch-count" class="text-sm font-medium text-purple-200">Количество кодов за раз</label>
+                                <span id="batch-count-val" class="px-2.5 py-0.5 rounded-lg bg-purple-950 border border-purple-700/60 font-mono text-sm font-bold text-fuchsia-300">1</span>
+                            </div>
+                            <input id="batch-count" type="range" min="1" max="20" value="1" class="w-full">
+                            <div class="flex justify-between text-[11px] text-purple-400/60 font-mono mt-1">
+                                <span>1 код</span>
+                                <span>10</span>
+                                <span>20 кодов</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Правая колонка: Результат и История -->
+            <main class="lg:col-span-7 space-y-6">
+                
+                <!-- Карточка генерации и вывода -->
+                <div class="bg-cyber-card/90 backdrop-blur-xl border border-cyber-border rounded-2xl p-5 sm:p-6 shadow-card">
+                    <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                            <h2 class="text-base font-semibold text-purple-100">Сгенерированный результат</h2>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span id="key-length-badge" class="text-xs font-mono px-2.5 py-1 rounded-lg bg-purple-950/90 border border-purple-800/70 text-purple-300">
+                                Длина: 48 симв.
+                            </span>
+                            <button id="copy-all-btn" type="button" class="hidden px-3 py-1.5 rounded-lg bg-purple-800/40 hover:bg-purple-700/50 border border-purple-600/50 text-xs font-medium text-purple-100 transition-all flex items-center gap-1.5">
+                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                </svg>
+                                Копировать все
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Контейнер сгенерированных кодов -->
+                    <div id="output-container" class="space-y-2.5 max-h-[340px] overflow-y-auto pr-1 mb-6">
+                        <!-- Сюда рендерятся коды -->
+                    </div>
+
+                    <!-- Большая кнопка Сгенерировать -->
+                    <button id="generate-btn" type="button" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-purple-600 via-fuchsia-600 to-purple-600 hover:from-purple-500 hover:via-fuchsia-500 hover:to-purple-500 active:scale-[0.99] text-white font-bold text-base sm:text-lg tracking-wide shadow-neon-strong transition-all duration-200 flex items-center justify-center gap-3 group cursor-pointer">
+                        <svg class="w-6 h-6 transition-transform duration-300 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                        <span>Сгенерировать</span>
+                    </button>
+                </div>
+
+                <!-- История сгенерированных ключей -->
+                <div class="bg-cyber-card/90 backdrop-blur-xl border border-cyber-border rounded-2xl p-5 sm:p-6 shadow-card">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-4 h-4 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <h2 class="text-base font-semibold text-purple-100">История ключей</h2>
+                            <span id="history-count" class="text-xs font-mono px-2 py-0.5 rounded-full bg-purple-950 text-purple-300 border border-purple-800/60">0</span>
+                        </div>
+                        <button id="clear-history-btn" type="button" class="text-xs text-purple-400 hover:text-fuchsia-300 transition-colors flex items-center gap-1">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                            </svg>
+                            Очистить
+                        </button>
+                    </div>
+
+                    <div id="history-list" class="space-y-2 max-h-[260px] overflow-y-auto pr-1">
+                        <div class="text-center py-8 text-sm text-purple-400/60 font-mono">
+                            История пока пуста...
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Стандартные параметры по запросу пользователя
+        const DEFAULT_ALPHABET = "H, G, T, P, S, V, N, M, B, Z, X, D, K, L, J, Q, W, R, F, C";
+        const DIGITS = "0123456789";
+
+        // Состояние приложения
+        const state = {
+            blocksCount: 10,
+            blockLength: 4,
+            shortFirstBlock: true,
+            separator: "-",
+            includeDigits: true,
+            alphabetRaw: DEFAULT_ALPHABET,
+            batchCount: 1,
+            currentCodes: [],
+            history: []
+        };
+
+        // DOM элементы
+        const els = {
+            blocksCount: document.getElementById('blocks-count'),
+            blocksCountVal: document.getElementById('blocks-count-val'),
+            blockLength: document.getElementById('block-length'),
+            blockLengthVal: document.getElementById('block-length-val'),
+            shortFirstBlock: document.getElementById('short-first-block'),
+            sepBtns: document.querySelectorAll('.sep-btn'),
+            includeDigits: document.getElementById('include-digits'),
+            alphabetInput: document.getElementById('alphabet-input'),
+            alphabetCount: document.getElementById('alphabet-count'),
+            batchCount: document.getElementById('batch-count'),
+            batchCountVal: document.getElementById('batch-count-val'),
+            outputContainer: document.getElementById('output-container'),
+            keyLengthBadge: document.getElementById('key-length-badge'),
+            copyAllBtn: document.getElementById('copy-all-btn'),
+            generateBtn: document.getElementById('generate-btn'),
+            historyList: document.getElementById('history-list'),
+            historyCount: document.getElementById('history-count'),
+            clearHistoryBtn: document.getElementById('clear-history-btn'),
+            resetDefaultsBtn: document.getElementById('reset-defaults-btn'),
+            toast: document.getElementById('toast'),
+            toastText: document.getElementById('toast-text')
+        };
+
+        let toastTimer = null;
+
+        // Показ уведомления
+        function showToast(message = "Скопировано!") {
+            els.toastText.textContent = message;
+            els.toast.classList.remove('translate-x-10', 'opacity-0');
+            els.toast.classList.add('translate-x-0', 'opacity-100');
+
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => {
+                els.toast.classList.remove('translate-x-0', 'opacity-100');
+                els.toast.classList.add('translate-x-10', 'opacity-0');
+            }, 2200);
+        }
+
+        // Копирование текста в буфер обмена (надежный метод для iframe)
+        function copyToClipboard(text, customMessage = "Скопировано!") {
+            const textArea = document.createElement("textarea");
+            textArea.value = text;
+            textArea.style.position = "fixed";
+            textArea.style.left = "-9999px";
+            textArea.style.top = "0";
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                showToast(customMessage);
+            } catch (err) {
+                console.error('Ошибка копирования:', err);
+                showToast("Не удалось скопировать");
+            }
+
+            document.body.removeChild(textArea);
+        }
+
+        // Извлечение уникальных символов из алфавита пользователя
+        function getCleanLetters() {
+            const cleaned = state.alphabetRaw
+                .toUpperCase()
+                .replace(/[\s,;|._\-]+/g, '');
+            const unique = Array.from(new Set(cleaned.split(''))).filter(ch => ch.trim() !== '');
+            els.alphabetCount.textContent = `${unique.length} уникальных`;
+            return unique.length > 0 ? unique : ['H', 'G', 'T', 'P'];
+        }
+
+        // Криптографически стойкий случайный индекс
+        function getRandomInt(max) {
+            if (window.crypto && window.crypto.getRandomValues) {
+                const array = new Uint32Array(1);
+                window.crypto.getRandomValues(array);
+                return array[0] % max;
+            }
+            return Math.floor(Math.random() * max);
+        }
+
+        // Генерация одного кода по текущим настройкам
+        function generateSingleKey() {
+            const letters = getCleanLetters();
+            const digitsArr = DIGITS.split('');
+            const combinedPool = state.includeDigits ? [...letters, ...digitsArr] : [...letters];
+
+            const blocks = [];
+
+            for (let b = 0; b < state.blocksCount; b++) {
+                // Первый блок может быть на 1 символ короче (например K7M при длине 4)
+                let len = state.blockLength;
+                if (b === 0 && state.shortFirstBlock && state.blockLength > 2) {
+                    len = state.blockLength - 1;
+                }
+
+                let blockChars = [];
+                for (let i = 0; i < len; i++) {
+                    // Взвешенный выбор: ~75% буквы из заданного набора, ~25% цифры (если включены)
+                    // Это сохраняет фирменный стиль K7M-HGTP-SVNM-BMZX-DKLJ-QW9R
+                    if (state.includeDigits && digitsArr.length > 0 && getRandomInt(100) < 24) {
+                        blockChars.push(digitsArr[getRandomInt(digitsArr.length)]);
+                    } else {
+                        blockChars.push(letters[getRandomInt(letters.length)]);
+                    }
+                }
+
+                // Гарантируем, что в первом блоке при включенных цифрах хотя бы одна цифра (для эстетики K7M)
+                if (b === 0 && state.includeDigits && len >= 3 && !blockChars.some(c => DIGITS.includes(c))) {
+                    const pos = getRandomInt(len);
+                    blockChars[pos] = digitsArr[getRandomInt(digitsArr.length)];
+                }
+
+                blocks.push(blockChars.join(''));
+            }
+
+            return blocks.join(state.separator);
+        }
+
+        // Подсветка цифр в ключе для красивого неонового отображения
+        function formatKeyHtml(keyStr) {
+            return keyStr.split('').map(char => {
+                if (DIGITS.includes(char)) {
+                    return `<span class="text-fuchsia-400 font-bold">${char}</span>`;
+                }
+                if (char === '-' || char === '_') {
+                    return `<span class="text-purple-500/80">${char}</span>`;
+                }
+                return `<span class="text-purple-100">${char}</span>`;
+            }).join('');
+        }
+
+        // Рендер сгенерированных кодов
+        function renderOutput() {
+            els.outputContainer.innerHTML = '';
+
+            if (state.currentCodes.length > 0) {
+                els.keyLengthBadge.textContent = `Длина: ${state.currentCodes[0].length} симв.`;
+            }
+
+            if (state.currentCodes.length > 1) {
+                els.copyAllBtn.classList.remove('hidden');
+            } else {
+                els.copyAllBtn.classList.add('hidden');
+            }
+
+            state.currentCodes.forEach((code, idx) => {
+                const isSingle = state.currentCodes.length === 1;
+                const card = document.createElement('div');
+                card.className = `group relative flex items-center justify-between gap-3 ${isSingle ? 'p-4 sm:p-5' : 'p-3 sm:p-3.5'} rounded-xl bg-[#0c0718] border border-purple-700/60 hover:border-fuchsia-500/80 shadow-neon transition-all duration-200`;
+
+                card.innerHTML = `
+                    <div class="overflow-x-auto py-1 scrollbar-none flex-1">
+                        <code class="font-mono ${isSingle ? 'text-base sm:text-xl' : 'text-sm sm:text-base'} tracking-wider whitespace-nowrap select-all">
+                            ${formatKeyHtml(code)}
+                        </code>
+                    </div>
+                    <button type="button" class="copy-item-btn shrink-0 px-3.5 py-2 rounded-xl bg-purple-900/50 hover:bg-fuchsia-600/30 border border-purple-600/50 hover:border-fuchsia-400 text-purple-200 hover:text-white text-xs sm:text-sm font-medium transition-all flex items-center gap-1.5 cursor-pointer" title="Скопировать ключ">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+                        </svg>
+                        <span class="hidden sm:inline">Копировать</span>
+                    </button>
+                `;
+
+                const btn = card.querySelector('.copy-item-btn');
+                btn.addEventListener('click', () => copyToClipboard(code, 'Скопировано!'));
+
+                els.outputContainer.appendChild(card);
+            });
+        }
+
+        // Рендер истории
+        function renderHistory() {
+            els.historyCount.textContent = state.history.length;
+
+            if (state.history.length === 0) {
+                els.historyList.innerHTML = `
+                    <div class="text-center py-8 text-sm text-purple-400/60 font-mono">
+                        История пока пуста...
+                    </div>
+                `;
+                return;
+            }
+
+            els.historyList.innerHTML = '';
+            state.history.forEach(item => {
+                const row = document.createElement('div');
+                row.className = 'flex items-center justify-between gap-3 px-3.5 py-2.5 rounded-xl bg-cyber-input/60 hover:bg-cyber-input border border-purple-900/50 hover:border-purple-700/70 transition-colors';
+
+                row.innerHTML = `
+                    <div class="flex items-center gap-3 overflow-hidden">
+                        <span class="text-[11px] font-mono text-purple-400/70 shrink-0">${item.time}</span>
+                        <code class="font-mono text-xs sm:text-sm text-purple-200 truncate select-all">${formatKeyHtml(item.code)}</code>
+                    </div>
+                    <button type="button" class="hist-copy-btn shrink-0 p-1.5 rounded-lg text-purple-300 hover:text-white hover:bg-purple-800/50 transition-colors cursor-pointer" title="Скопировать">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                        </svg>
+                    </button>
+                `;
+
+                row.querySelector('.hist-copy-btn').addEventListener('click', () => {
+                    copyToClipboard(item.code, 'Скопировано из истории!');
+                });
+
+                els.historyList.appendChild(row);
+            });
+        }
+
+        // Запуск генерации
+        function runGeneration(addToHistory = true) {
+            const generated = [];
+            for (let i = 0; i < state.batchCount; i++) {
+                generated.push(generateSingleKey());
+            }
+            state.currentCodes = generated;
+            renderOutput();
+
+            if (addToHistory) {
+                const now = new Date();
+                const timeStr = now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+                
+                generated.slice().reverse().forEach(code => {
+                    state.history.unshift({ code, time: timeStr });
+                });
+
+                // Ограничиваем историю 30 последними записями
+                if (state.history.length > 30) {
+                    state.history = state.history.slice(0, 30);
+                }
+                renderHistory();
+            }
+        }
+
+        // Синхронизация UI с состоянием
+        function syncUI() {
+            els.blocksCount.value = state.blocksCount;
+            els.blocksCountVal.textContent = state.blocksCount;
+
+            els.blockLength.value = state.blockLength;
+            els.blockLengthVal.textContent = state.blockLength;
+
+            els.shortFirstBlock.checked = state.shortFirstBlock;
+            els.includeDigits.checked = state.includeDigits;
+            els.alphabetInput.value = state.alphabetRaw;
+
+            els.batchCount.value = state.batchCount;
+            els.batchCountVal.textContent = state.batchCount;
+
+            els.sepBtns.forEach(btn => {
+                if (btn.dataset.sep === state.separator) {
+                    btn.className = 'sep-btn active py-2.5 px-3 rounded-xl font-mono text-sm font-semibold border transition-all bg-fuchsia-600/25 border-fuchsia-500 text-white shadow-neon';
+                } else {
+                    btn.className = 'sep-btn py-2.5 px-3 rounded-xl font-mono text-sm font-semibold border transition-all bg-cyber-input border-purple-900/70 text-purple-300 hover:border-purple-700';
+                }
+            });
+
+            getCleanLetters();
+        }
+
+        // Слушатели событий
+        els.blocksCount.addEventListener('input', (e) => {
+            state.blocksCount = parseInt(e.target.value, 10);
+            els.blocksCountVal.textContent = state.blocksCount;
+            runGeneration(false);
+        });
+
+        els.blockLength.addEventListener('input', (e) => {
+            state.blockLength = parseInt(e.target.value, 10);
+            els.blockLengthVal.textContent = state.blockLength;
+            runGeneration(false);
+        });
+
+        els.shortFirstBlock.addEventListener('change', (e) => {
+            state.shortFirstBlock = e.target.checked;
+            runGeneration(false);
+        });
+
+        els.sepBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                state.separator = btn.dataset.sep;
+                syncUI();
+                runGeneration(false);
+            });
+        });
+
+        els.includeDigits.addEventListener('change', (e) => {
+            state.includeDigits = e.target.checked;
+            runGeneration(false);
+        });
+
+        els.alphabetInput.addEventListener('input', (e) => {
+            state.alphabetRaw = e.target.value;
+            getCleanLetters();
+            runGeneration(false);
+        });
+
+        els.batchCount.addEventListener('input', (e) => {
+            state.batchCount = parseInt(e.target.value, 10);
+            els.batchCountVal.textContent = state.batchCount;
+            runGeneration(false);
+        });
+
+        els.generateBtn.addEventListener('click', () => {
+            runGeneration(true);
+        });
+
+        els.copyAllBtn.addEventListener('click', () => {
+            if (state.currentCodes.length > 0) {
+                copyToClipboard(state.currentCodes.join('\n'), `Скопировано кодов: ${state.currentCodes.length}!`);
+            }
+        });
+
+        els.clearHistoryBtn.addEventListener('click', () => {
+            state.history = [];
+            renderHistory();
+            showToast('История очищена');
+        });
+
+        els.resetDefaultsBtn.addEventListener('click', () => {
+            state.blocksCount = 10;
+            state.blockLength = 4;
+            state.shortFirstBlock = true;
+            state.separator = "-";
+            state.includeDigits = true;
+            state.alphabetRaw = DEFAULT_ALPHABET;
+            state.batchCount = 1;
+            syncUI();
+            runGeneration(true);
+            showToast('Настройки сброшены');
+        });
+
+        // Инициализация при загрузке
+        window.addEventListener('DOMContentLoaded', () => {
+            syncUI();
+            runGeneration(true);
+        });
+    </script>
+</body>
+</html>
